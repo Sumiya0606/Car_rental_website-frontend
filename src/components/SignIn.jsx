@@ -5,7 +5,7 @@ import signuplogo from '../assets/images/OIP.jpg'
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { useAuth } from '../context/AuthContext';
 const schema = yup
   .object({
     email: yup.string().email().required(),
@@ -13,13 +13,15 @@ const schema = yup
   })
   .required();
 const SignIn = () => {
+  // const [username, setUsername] = useState('');
+  const { login } = useAuth();
   // const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
 } = useForm({ resolver: yupResolver(schema) });
-
+const navigate = useNavigate();
 const onSubmit = async (data) => {
     try {
         const res = await axios.post(
@@ -29,11 +31,18 @@ const onSubmit = async (data) => {
                 withCredentials: true,
             }
         );
-        const resData = res.data;
-        if (resData === "logged in") {
-           alert("Susses")
+        const{token,firstName,message}=res.data
+        console.log(firstName)
+        console.log(token)
+        console.log(message)
+        if (message === "Logged in successfully") {
+          login(firstName)
+          navigate('/');
+        
+      
+          
         } else {
-            console.error("Unexpected response:", resData);
+            console.error("Unexpected response:", message);
         }
     } catch (error) {
         console.error("Error during submission:", error);
@@ -77,9 +86,9 @@ return (
       />
       <p>
         User not created yet{" "}
-        {/* <Link to="/user/signup" className="text-blue-500 underline"> */}
-          Signin
-        {/* </Link> */}
+        <Link to="/user/signup" className="text-blue-500 underline">
+          Signup
+        </Link>
       </p>
 </form>
                 </div>

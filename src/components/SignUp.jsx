@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-
+import { useAuth } from '../context/AuthContext';
 const schema = yup
     .object({
         firstName: yup.string().required("First name is required"),
@@ -15,6 +15,9 @@ const schema = yup
     })
     .required();
 const SignUp = () => {
+  // const [username, setUsername] = useState('');
+  // const { login } = useAuth();
+  // const navigate = useNavigate();
     // const navigate = useNavigate();
     const {
         register,
@@ -32,6 +35,7 @@ const SignUp = () => {
                 }
             );
             const resData = res.data;
+            console.log(res)
             if (resData === "Signed successfully!") {
                alert("Susses")
             } else {
