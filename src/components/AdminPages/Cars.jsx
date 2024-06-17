@@ -14,7 +14,7 @@ const Cars = () => {
         const getAllCars = async () => {
           try {
             const res = await axios.get(
-              "http://localhost:3000/api/v1/admin/getcars",
+              "https://car-rental-website-backend.onrender.com/api/v1/admin/getcars",
             );
             const data = await res.data;
             console.log(data);
