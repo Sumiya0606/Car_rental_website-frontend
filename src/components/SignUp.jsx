@@ -15,10 +15,11 @@ const schema = yup
     })
     .required();
 const SignUp = () => {
+  const { login } = useAuth();
   // const [username, setUsername] = useState('');
   // const { login } = useAuth();
   // const navigate = useNavigate();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -34,12 +35,15 @@ const SignUp = () => {
                     withCredentials: true,
                 }
             );
-            const resData = res.data;
-            console.log(res)
-            if (resData === "Signed successfully!") {
-               alert("Susses")
+            const{token,firstName,message}=res.data
+        console.log(firstName)
+        console.log(token)
+        console.log(message)
+        if (message === "signed in successfully") {
+          login(firstName)
+          navigate('/');
             } else {
-                console.error("Unexpected response:", resData);
+                console.error("Unexpected response:", message);
             }
         } catch (error) {
             console.error("Error during submission:", error);

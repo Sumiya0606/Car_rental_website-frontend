@@ -31,13 +31,18 @@ const onSubmit = async (data) => {
                 withCredentials: true,
             }
         );
-        const{token,firstName,message}=res.data
+        const{token,firstName,message,role}=res.data
         console.log(firstName)
         console.log(token)
         console.log(message)
+        console.log(role)
         if (message === "Logged in successfully") {
+          if(role=='admin'){
+            navigate('/admin/dashboard')
+          }else{
           login(firstName)
           navigate('/');
+          }
         
       
           

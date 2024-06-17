@@ -40,8 +40,8 @@ const CarDetails = () => {
         <Image src={car.carPicture} alt={car.name} objectFit="cover" w="100%" h={{ base: '300px', md: '500px' }} />
       </Box>
       <Box flex="1" p="4">
-        <Heading as="h1" mb="4">{car.name}</Heading>
-        <Text fontSize="lg" mb="4">{car.details}</Text>
+        <Heading as="h1" mb="4">{car.carName}</Heading>
+        <Text fontSize="lg" mb="4">{car.carModel}</Text>
         <Text fontSize="2xl" fontWeight="bold">${car.price}/day</Text>
       </Box>
     </Flex>

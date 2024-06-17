@@ -12,7 +12,14 @@ import { ThemeProvider } from './context/themeContext.jsx';
 import { ChakraProvider } from '@chakra-ui/react';
 import Hero1 from './components/Hero1.jsx';
 import CarDetails from './components/CarDetailsPage.jsx';
+import CarByLocation from './components/CarByLocation.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
+import AdminDashboard from './components/AdminDashboard.jsx';
+import AdminLayout from './components/Layouts/AdminLayout.jsx';
+import Users from './components/AdminPages/Users.jsx';
+import UserDetails from './components/AdminPages/UserDetails.jsx';
+import Cars from './components/AdminPages/Cars.jsx';
+import ProtectedRoute from './components/AdminPages/ProtectedRoute.jsx';
 
 
 const router = createBrowserRouter([
@@ -39,12 +46,66 @@ const router = createBrowserRouter([
         element: < Hero1/>,
       },
       {
+        path: "/user/carsbylocation",
+        element: <CarByLocation/>,
+      },
+      {
         path: '/car/:carId',
         element: <CarDetails/>,
       },
     ],
   },  
-    ])
+  {
+   
+    
+    
+        element: <AdminLayout />,
+        children: [
+          {
+            path: "/admin/dashboard",
+            element:
+                <AdminDashboard />
+               ,
+          },
+          {
+            path: "/admin/users",
+            element:
+                <Users />
+             ,
+          },
+          {
+            path: "/admin/admin",
+            element:
+                <Users />
+              
+          },
+          {
+            path: '/admin/users/:userId',
+            element:
+                <UserDetails />
+              
+          },
+          {
+            path: '/admin/admin/:userId',
+            element:
+                <UserDetails />
+              
+          },
+          {
+            path: "/admin/cars",
+            element:
+                <Cars />
+             
+          },
+          {
+            path: "/admin/cars/:carId",
+            element:
+                <CarDetails />
+             
+          },
+        ],
+      },
+    ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider>
