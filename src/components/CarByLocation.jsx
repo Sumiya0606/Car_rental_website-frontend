@@ -13,20 +13,24 @@ const CarByLocation = () => {
   
     useEffect(() => {
       const getCarsbylocation = async () => {
+        if (!officeLocation) {
+          console.error('No office location specified.');
+          setError('No office location specified.');
+          return;
+        }
+  
         try {
-          const res = await axios.get(
-            `https://car-rental-website-backend.onrender.com/api/v1/user/getcarbylocation`, {
-              params: { location: officeLocation },
-              withCredentials: true}
-          );
-          const data = await res.data;
-          console.log(data);
-          setCars(data);
+          const res = await axios.get(`https://car-rental-website-backend.onrender.com/api/v1/user/getcarbylocation`, {
+            params: { location: officeLocation },
+            withCredentials: true,
+          });
+          setCars(res.data);
         } catch (error) {
-          console.log(error);
+          console.error('Error fetching cars:', error);
+          setError('Error fetching cars.');
         }
       };
-      getCarsbylocation();
+      getCarsByLocation();
     }, [officeLocation]);
     return(
     <Box bg={theme === 'dark' ? 'gray.900' : 'gray.100'} color={theme === 'dark' ? 'white' : 'black'} py="8">
