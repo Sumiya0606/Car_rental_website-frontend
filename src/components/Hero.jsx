@@ -38,7 +38,7 @@ const Hero = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const onSubmit=(data)=>{
-    navigate("/user/carsbylocation", { state: { location: data.officeLocation } })
+    navigate("/user/carsbylocation/:city", { state: { location: data.officeLocation } })
   }
 
 

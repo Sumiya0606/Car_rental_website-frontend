@@ -20,14 +20,14 @@ const CarByLocation = () => {
         }
   
         try {
-          const res = await axios.get(`https://car-rental-website-backend.onrender.com/api/v1/user/getcarbylocation`, {
+          const res = await axios.get(`https://car-rental-website-backend.onrender.com/api/v1/user/getcarbylocation/:city`, {
             params: { location: officeLocation },
             withCredentials: true,
           });
           setCars(res.data);
         } catch (error) {
           console.error('Error fetching cars:', error);
-          setError('Error fetching cars.');
+         
         }
       };
       getCarsByLocation();
