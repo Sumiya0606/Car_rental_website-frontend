@@ -25,7 +25,7 @@ const CarByLocation = () => {
         }
       };
       getCarsbylocation();
-    }, []);
+    }, [officeLocation]);
     return(
     <Box bg={theme === 'dark' ? 'gray.900' : 'gray.100'} color={theme === 'dark' ? 'white' : 'black'} py="8">
     <Box maxW="1200px" mx="auto" px="4">
