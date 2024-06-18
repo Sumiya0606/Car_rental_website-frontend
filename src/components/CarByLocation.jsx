@@ -12,7 +12,7 @@ const CarByLocation = () => {
     const [cars, setCars] = useState([]);
   
     useEffect(() => {
-      const getCarsbylocation = async () => {
+      const getCarsByLocation = async () => {
         if (!officeLocation) {
           console.error('No office location specified.');
           setError('No office location specified.');
