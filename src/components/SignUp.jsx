@@ -30,6 +30,7 @@ const SignUp = () => {
         try {
             const res = await axios.post(
                 "https://car-rental-website-backend.onrender.com/api/v1/user/signup",
+               
                 data,
                 {
                     withCredentials: true,
