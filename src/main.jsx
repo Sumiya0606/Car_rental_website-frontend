@@ -46,7 +46,7 @@ const router = createBrowserRouter([
         element: < Hero1/>,
       },
       {
-        path: "/user/carsbylocation/:city",
+        path: "/user/carsbylocation",
         element: <CarByLocation/>,
       },
       {
