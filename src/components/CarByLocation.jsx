@@ -15,10 +15,9 @@ const CarByLocation = () => {
       const getCarsbylocation = async () => {
         try {
           const res = await axios.get(
-            "https://car-rental-website-backend.onrender.com/api/v1/user/getcarbylocation",officeLocation,
-            {
-              withCredentials: true,
-          }
+            `https://car-rental-website-backend.onrender.com/api/v1/user/getcarbylocation`, {
+              params: { location: officeLocation },
+              withCredentials: true}
           );
           const data = await res.data;
           console.log(data);
