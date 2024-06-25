@@ -12,15 +12,21 @@ export const Navlinks = [
       link: "/admin/users",
     },
     {
-      id: 1,
+      id: 3,
       name: "ADMINS",
       link: "/admin/admin",
     },
     {
-      id: 1,
+      id: 4,
       name: "CARS",
       link: "/admin/cars",
     },
+    {
+      id: 5,
+      name: "OFFICES",
+        link: "/admin/offices",
+    },
+
   ];
   const NavbarAdmin = () => {
     const [showMenu, setShowMenu] = useState(false);

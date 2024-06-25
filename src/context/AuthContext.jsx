@@ -5,12 +5,14 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem('user');
+    console.log("Saved User:", savedUser); 
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  const login = (username) => {
-    const userData = { username };
+  const login = (username,id) => {
+    const userData = { username, id };
     setUser(userData);
+    console.log("Login User Data:", userData);
     localStorage.setItem('user', JSON.stringify(userData));
   };
 

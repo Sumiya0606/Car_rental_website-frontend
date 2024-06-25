@@ -29,19 +29,20 @@ const SignUp = () => {
     const onSubmit = async (data) => {
         try {
             const res = await axios.post(
-                "https://car-rental-website-backend.onrender.com/api/v1/user/signup",
+                "http://localhost:3000/api/v1/user/signup",
                
                 data,
                 {
                     withCredentials: true,
                 }
             );
-            const{token,firstName,message}=res.data
+            const{token,firstName,id,message}=res.data
         console.log(firstName)
         console.log(token)
         console.log(message)
+        console.log(id)
         if (message === "signed in successfully") {
-          login(firstName)
+          login(firstName,id)
           navigate('/');
             } else {
                 console.error("Unexpected response:", message);

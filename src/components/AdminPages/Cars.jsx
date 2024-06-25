@@ -14,7 +14,7 @@ const Cars = () => {
         const getAllCars = async () => {
           try {
             const res = await axios.get(
-              "https://car-rental-website-backend.onrender.com/api/v1/admin/getcars",
+              "http://localhost:3000/api/v1/admin/getcars",
             );
             const data = await res.data;
             console.log(data);
@@ -43,8 +43,8 @@ const Cars = () => {
             <Tr key={car._id} onClick={() => handleRowClick(car._id)} style={{ cursor: 'pointer' }}>
               <Td>ID: {car._id}</Td>
               <Td>Name: {car.carName}</Td>
-              <Td>Email: {car.rentalPriceCharge}</Td>
-              <Td>Phone: {car.officeLocation}</Td>
+              <Td>Rent: {car.rentalPriceCharge}</Td>
+              <Td>Transmission: {car.transmission}</Td>
             </Tr>
           ))}
       </Tbody>

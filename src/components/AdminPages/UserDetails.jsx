@@ -4,9 +4,10 @@ import { Box, Flex, Heading, Image, Text, Button, VStack } from '@chakra-ui/reac
 import { useParams } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 
 const UserDetails = () => {
+    const navigate = useNavigate();
     const [users,setUsers]=useState([]);
     const [loading, setLoading] = useState(true);
     const { userId } = useParams();
@@ -14,7 +15,7 @@ const UserDetails = () => {
         const getAllUSers = async () => {
           try {
             const res = await axios.get(
-              "https://car-rental-website-backend.onrender.com/api/v1/admin/getAllUsers",
+              "http://localhost:3000/api/v1/admin/getAllUsers",
             );
             const data = await res.data;
             console.log(data);
@@ -34,7 +35,31 @@ const UserDetails = () => {
   if (!user) {
     return <Box p={5}>User not found</Box>;
   }
+const handleDelete=async()=>{
+      
+try{
+    
+    const res=await axios.delete(
+        `http://localhost:3000/api/v1/admin/deleteuser/${userId}`,
+      );
+console.log(res)
+if(res.data.success==true){
+    alert("deleted successfully");
+    navigate("/admin/users")
+}
+}catch(error){
+    console.log(error)
+}
 
+
+}
+const handleOrders=()=>{
+ navigate(`/orders/${userId}`)
+}
+const handleRoleChange=()=>{
+    navigate(`/admin/roleChange/${userId}`)
+
+}
   return (
     <Box p={5}>
       <Flex direction={{ base: 'column', md: 'row' }} p="3" maxW="800px" mx="auto" mb="4" boxShadow="md" borderWidth="1px" borderRadius="md" bg="white">
@@ -48,10 +73,10 @@ const UserDetails = () => {
           <Text fontSize="md">{user.details}</Text>
           <VStack spacing="2" mt="3">
           {user.role !== 'admin' && (
-              <Button colorScheme="blue">View Orders</Button>
+              <Button onClick={handleOrders}colorScheme="blue">View Orders</Button>
             )}
-            <Button colorScheme="green">change role</Button>
-            <Button colorScheme="red">Delete</Button>
+            <Button onClick={handleRoleChange} colorScheme="green">change role</Button>
+            <Button onClick={handleDelete} colorScheme="red">Delete</Button>
           </VStack>
         </Box>
       </Flex>

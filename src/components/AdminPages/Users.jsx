@@ -15,7 +15,7 @@ const Users = () => {
         const getAllUSers = async () => {
           try {
             const res = await axios.get(
-              "https://car-rental-website-backend.onrender.com/api/v1/admin/getAllUsers",
+              "http://localhost:3000/api/v1/admin/getAllUsers",
             );
             const data = await res.data;
             console.log(data);

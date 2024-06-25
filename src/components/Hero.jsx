@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from 'axios'
+import { useSearch } from "../context/SearchContext";
 const schema = yup
   .object({
  
@@ -18,13 +19,17 @@ const schema = yup
   })
   .required();
 const Hero = () => {
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const [offices, setOffice] = useState([]);
+  const { searchData, setSearchData } = useSearch(); 
+
+  
   
   useEffect(() => {
     const officeList = async () => {
       const res = await axios.get(
-        "https://car-rental-website-backend.onrender.com/api/v1/user/getAllOffices",
+        "http://localhost:3000/api/v1/user/getAllOffices",
       );
       const data = await res.data;
       console.log(data);
@@ -38,12 +43,18 @@ const Hero = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const onSubmit=(data)=>{
+    setSearchData({
+      location: data.officeLocation,
+      pickupDate: searchData.pickupDate,
+      returnDate: searchData.returnDate
+    });
     navigate("/user/carsbylocation/:city", { state: { location: data.officeLocation } })
+    
   }
 
 
 
-  const { theme } = useTheme();
+  
 
   useEffect(() => {
     AOS.init();
@@ -127,6 +138,8 @@ const Hero = () => {
                 type="date"
                 id="pickup-date"
                 className="px-4 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"
+                value={searchData.pickupDate}
+                onChange={(e) => setSearchData(prev => ({ ...prev, pickupDate: e.target.value }))}
               />
             </div>
             <div className="flex flex-col w-full sm:w-auto">
@@ -137,6 +150,8 @@ const Hero = () => {
                 type="date"
                 id="return-date"
                 className="px-4 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600"
+                value={searchData.returnDate}
+                onChange={(e) => setSearchData(prev => ({ ...prev, returnDate: e.target.value }))}
               />
             </div>
             <div className="flex w-full sm:w-auto space-x-4">
