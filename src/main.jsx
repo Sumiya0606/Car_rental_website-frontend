@@ -33,6 +33,7 @@ import UpdateOffice from './components/AdminPages/UpdateOffice.jsx';
 import CarOrderPage1 from './components/CarOrderPage1.jsx';
 import AdditionalRequirementsPage from './components/AdditionalRequirementPage.jsx';
 import OrderPage from './components/OrderPage.jsx';
+import About from './components/About.jsx';
 
 
 const router = createBrowserRouter([
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Hero />,
+      },
+      {
+        path: "/about",
+        element: <About/>,
       },
      
 
