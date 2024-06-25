@@ -100,7 +100,7 @@ const Hero = () => {
               }}
               className="rounded-md bg-primary hover:bg-primary/80 transition duration-500 py-2 px-6 text-black"
             >
-              Get Started
+            
             </button>
           </div>
         </div>

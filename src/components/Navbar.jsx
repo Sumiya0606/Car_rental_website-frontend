@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BiSolidSun, BiSolidMoon } from "react-icons/bi";
 import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
-// import ResponsiveMenu from "./ResponsiveMenu";
+import ResponsiveMenu from "./ResponsiveMenu";
 
 export const Navlinks = [
   {
@@ -98,7 +98,7 @@ const Navbar = ({ theme, setTheme }) => {
           </div>
         </div>
       </div>
-      {/* <ResponsiveMenu showMenu={showMenu} /> */}
+      /* <ResponsiveMenu showMenu={showMenu} /> 
     </div>
   );
 };
