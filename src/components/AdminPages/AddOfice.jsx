@@ -22,7 +22,7 @@ const AddOffice = () => {
     try {
       console.log("Form Data:", data);
       const res = await axios.post(
-        "http://localhost:3000/api/v1/admin/addOfficeLocation",
+        "https://car-rental-website-backend.onrender.com/api/v1/admin/addOfficeLocation",
         data, // Directly sending JSON data
         {
           withCredentials: true,

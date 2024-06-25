@@ -10,7 +10,7 @@ const OrderDetails = () => {
   useEffect(() => {
     const getOrders = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/v1/admin/getorder/${userId}`);
+        const res = await axios.get(`https://car-rental-website-backend.onrender.com/api/v1/admin/getorder/${userId}`);
         const data = res.data;
         
         console.log(data.success)

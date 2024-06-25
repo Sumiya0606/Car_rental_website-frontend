@@ -22,7 +22,7 @@ const UpdateOffice = () => {
     useEffect(() => {
         const fetchOffice = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/api/v1/admin/getooficebyid/${officeId}`);
+                const res = await axios.get(`https://car-rental-website-backend.onrender.com/api/v1/admin/getooficebyid/${officeId}`);
                 const data = res.data;
                 console.log(data)
                 setOffice(data);
@@ -55,7 +55,7 @@ const UpdateOffice = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.patch(`http://localhost:3000/api/v1/admin/updateOffice/${officeId}`, formData);
+            await axios.patch(`https://car-rental-website-backend.onrender.com/api/v1/admin/updateOffice/${officeId}`, formData);
             alert('Office updated successfully');
             navigate(`/admin/offices/${officeId}`);
         } catch (error) {

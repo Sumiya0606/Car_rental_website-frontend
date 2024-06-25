@@ -28,7 +28,7 @@ const AddCar = () => {
   useEffect(() => {
     const officeList = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/v1/admin/getAllOffices");
+        const res = await axios.get("https://car-rental-website-backend.onrender.com/api/v1/admin/getAllOffices");
         const data = res.data;
         setOffices(data);
       } catch (error) {
@@ -57,7 +57,7 @@ const AddCar = () => {
 console.log(formData)
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/admin/add-cars",
+        "https://car-rental-website-backend.onrender.com/api/v1/admin/add-cars",
         formData,
         {
           withCredentials: true,

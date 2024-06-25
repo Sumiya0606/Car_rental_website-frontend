@@ -24,7 +24,7 @@ const UpdateCarForm = () => {
     useEffect(() => {
         const fetchCar = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/api/v1/admin/getcarbyid/${carId}`);
+                const res = await axios.get(`https://car-rental-website-backend.onrender.com/api/v1/admin/getcarbyid/${carId}`);
                 const data = res.data;
                 console.log(data)
                 setCar(data);
@@ -59,7 +59,7 @@ const UpdateCarForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.patch(`http://localhost:3000/api/v1/admin/updatecar/${carId}`, formData);
+            await axios.patch(`https://car-rental-website-backend.onrender.com/api/v1/admin/updatecar/${carId}`, formData);
             alert('Car updated successfully');
             navigate(`/admin/cars/${carId}`);
         } catch (error) {

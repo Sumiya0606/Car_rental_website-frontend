@@ -29,7 +29,7 @@ const Hero = () => {
   useEffect(() => {
     const officeList = async () => {
       const res = await axios.get(
-        "http://localhost:3000/api/v1/user/getAllOffices",
+        "https://car-rental-website-backend.onrender.com/api/v1/user/getAllOffices",
       );
       const data = await res.data;
       console.log(data);

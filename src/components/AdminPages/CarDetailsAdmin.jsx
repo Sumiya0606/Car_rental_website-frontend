@@ -14,7 +14,7 @@ const CarDetailsAdmin = () => {
       const getAllCars = async () => {
         try {
           const res = await axios.get(
-            "http://localhost:3000/api/v1/user/getcars",
+            "https://car-rental-website-backend.onrender.com/api/v1/user/getcars",
           );
           const data = await res.data;
           console.log(data);
@@ -41,7 +41,7 @@ const CarDetailsAdmin = () => {
     try{
         
         const res=await axios.delete(
-            `http://localhost:3000/api/v1/admin/deletecar/${carId}`,
+            `https://car-rental-website-backend.onrender.com/api/v1/admin/deletecar/${carId}`,
           );
     console.log(res)
     if(res.data=="deleted car"){

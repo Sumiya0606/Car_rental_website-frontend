@@ -16,7 +16,7 @@ const OfficeDtails  = () => {
       const getAllOffices = async () => {
         try {
           const res = await axios.get(
-            "http://localhost:3000/api/v1/admin/getAllOffices",
+            "https://car-rental-website-backend.onrender.com/api/v1/admin/getAllOffices",
           );
           const data = await res.data;
           
@@ -43,7 +43,7 @@ const OfficeDtails  = () => {
     try{
         
         const res=await axios.delete(
-            `http://localhost:3000/api/v1/admin//deleteOffice/${officeId}`,
+            `https://car-rental-website-backend.onrender.com/api/v1/admin//deleteOffice/${officeId}`,
           );
     console.log(res)
     if(res.data=="deleted Office"){

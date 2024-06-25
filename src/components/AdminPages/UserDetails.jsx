@@ -15,7 +15,7 @@ const UserDetails = () => {
         const getAllUSers = async () => {
           try {
             const res = await axios.get(
-              "http://localhost:3000/api/v1/admin/getAllUsers",
+              "https://car-rental-website-backend.onrender.com/api/v1/admin/getAllUsers",
             );
             const data = await res.data;
             console.log(data);
@@ -40,7 +40,7 @@ const handleDelete=async()=>{
 try{
     
     const res=await axios.delete(
-        `http://localhost:3000/api/v1/admin/deleteuser/${userId}`,
+        `https://car-rental-website-backend.onrender.com/api/v1/admin/deleteuser/${userId}`,
       );
 console.log(res)
 if(res.data.success==true){

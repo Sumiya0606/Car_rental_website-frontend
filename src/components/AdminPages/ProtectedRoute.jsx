@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children, roles }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/v1/user/check-auth', {
+        const response = await axios.get('https://car-rental-website-backend.onrender.com/api/v1/user/check-auth', {
           withCredentials: true,
         });
         setIsAuthenticated(response.data.isAuthenticated);

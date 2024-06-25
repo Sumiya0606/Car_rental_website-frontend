@@ -12,7 +12,7 @@ const Offices = () => {
         const getAllOffices = async () => {
           try {
             const res = await axios.get(
-              "http://localhost:3000/api/v1/admin/getAllOffices",
+              "https://car-rental-website-backend.onrender.com/api/v1/admin/getAllOffices",
             );
             const data = await res.data;
             console.log(data);

@@ -18,7 +18,7 @@ const OrderPage = () => {
     const fetchCar = async () => {
       try {
         console.log("Fetching car details");
-        const res = await axios.get(`http://localhost:3000/api/v1/user/getcarbyid/${carId}`);
+        const res = await axios.get(`https://car-rental-website-backend.onrender.com/api/v1/user/getcarbyid/${carId}`);
         const data = res.data;
         setCar(data);
         console.log(data[0].carName);
@@ -50,7 +50,7 @@ const OrderPage = () => {
         returnedat:returnDate 
       };
 
-      const response = await axios.post('http://localhost:3000/api/v1/user/createorder', orderData);
+      const response = await axios.post('https://car-rental-website-backend.onrender.com/api/v1/user/createorder', orderData);
       console.log('Order placed successfully', response.data);
       if(response.data.success==true)
       alert("orderplaced successfully");
