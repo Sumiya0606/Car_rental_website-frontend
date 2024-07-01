@@ -39,7 +39,7 @@ const OrderDetails = () => {
             <VStack align="start" spacing={2}>
               <Text><strong>ID:</strong> {order._id}</Text>
               <Text><strong>Name:</strong> {order.user.firstName}</Text>
-              {/* <Text><strong>Car Name:</strong> {order.car.carName}</Text> */}
+              <Text><strong>Car Name:</strong> {order.car.carName}</Text>
               <Text><strong>Picking date:</strong> {order.pickedAt}</Text>
               <Text><strong>returning date:</strong> {order.returnedAt}</Text>
               <Text><strong>Total price:</strong> {order.totalPrice}</Text>
