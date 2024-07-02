@@ -46,7 +46,7 @@ const OrderPage = () => {
         returnedat: returnDate 
       };
 
-      const response = await axios.post('https://car-rental-website-backend.onrender.com/api/v1/user/createorder', orderData);
+      const response = await axios.post('https://car-rental-website-backend.onrender.com/api/v1/user/create-order', orderData);
       const { order, razorpayOrder } = response.data;
 
       const options = {
@@ -63,7 +63,7 @@ const OrderPage = () => {
             razorpay_signature: response.razorpay_signature,
           };
 
-          const verifyResponse = await axios.post('https://car-rental-website-backend.onrender.com/api/v1/user/verifypayment', data);
+          const verifyResponse = await axios.post('https://car-rental-website-backend.onrender.com/api/v1/user/verify-payment', data);
 
           if (verifyResponse.data.success) {
             alert("Payment successful!");
