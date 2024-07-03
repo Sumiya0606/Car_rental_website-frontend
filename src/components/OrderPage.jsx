@@ -73,10 +73,10 @@ const OrderPage = () => {
           }
         },
         prefill: {
-          name: user.name,
-          email: user.email,
-          contact: user.contact,
-        },
+                   name: "Gaurav Kumar",
+                    email: "gaurav.kumar@example.com",
+                     contact: "9000090000"
+                   },
         notes: {
           address: "Car Rental Corporate Office",
         },
