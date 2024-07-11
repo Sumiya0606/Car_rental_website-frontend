@@ -111,7 +111,7 @@ const router = createBrowserRouter([
           {
             path: "/admin/dashboard",
             element: (
-              <PrivateRoute><AdminDashboard /></PrivateRoute>
+              <AdminDashboard />
             
             ),
             
