@@ -22,7 +22,7 @@ const UpdateOffice = () => {
     useEffect(() => {
         const fetchOffice = async () => {
             try {
-                const res = await axios.get(`https://car-rental-website-backend.onrender.com/api/v1/admin/getooficebyid/${officeId}`);
+                const res = await axios.get(`https://localhost:3000/api/v1/admin/getooficebyid/${officeId}`);
                 const data = res.data;
                 console.log(data)
                 setOffice(data);

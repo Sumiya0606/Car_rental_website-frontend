@@ -1,28 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Image, Text, VStack, HStack, SimpleGrid, GridItem, Button } from '@chakra-ui/react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSearch } from '../context/SearchContext';
 import { useAuth } from '../context/AuthContext';
 
 const OrderPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [car, setCar] = useState(null);
-  const { state } = location;
+  const { state } = useLocation();
   const carId = state?.carId;
+  console.log(carId)
   const { searchData } = useSearch();
   const { pickupDate, returnDate } = searchData;
   const totalAmount = state?.totalAmount;
-  const { user } = useAuth();
+  console.log(totalAmount)
+  const { user, token } = useAuth();
 
   useEffect(() => {
     const fetchCar = async () => {
       try {
         const res = await axios.get(`https://car-rental-website-backend.onrender.com/api/v1/user/getcarbyid/${carId}`);
-        const data = res.data;
-        setCar(data);
+        setCar(res.data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 
@@ -36,47 +38,60 @@ const OrderPage = () => {
   }
 
   const handleOrder = async () => {
+    if (!token) {
+      alert("Need to login first");
+      navigate('/user/signin');
+      return;
+    }
     try {
       const orderData = {
         carId: car[0]._id,
-        totalAmount: totalAmount,
+        totalAmount,
         userId: user.id,
         officeLocationId: car[0].office,
         pickedat: pickupDate,
-        returnedat: returnDate 
+        returnedat: returnDate,
       };
 
       const response = await axios.post('https://car-rental-website-backend.onrender.com/api/v1/user/create-order', orderData);
       const { order, razorpayOrder } = response.data;
 
       const options = {
-        key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Add your Razorpay Key ID
+        key: 'rzp_test_AH6CdTca8LJduR',
         amount: razorpayOrder.amount,
         currency: razorpayOrder.currency,
         name: "Car Rental",
         description: "Test Transaction",
         order_id: razorpayOrder.id,
-        handler: async function (response) {
+        handler: async (response) => {
           const data = {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_signature: response.razorpay_signature,
           };
 
-          const verifyResponse = await axios.post('https://car-rental-website-backend.onrender.com/api/v1/user/verify-payment', data);
+          try {
+            const verifyResponse = await axios.post('https://car-rental-website-backend.onrender.com/api/v1/user/verify-payment', data);
 
-          if (verifyResponse.data.success) {
-            alert("Payment successful!");
-            // You can redirect the user or show a success message here
-          } else {
-            alert("Payment verification failed!");
+            if (verifyResponse.data.success) {
+              navigate("/success", {
+                state: {
+                  paymentId: response.razorpay_payment_id,
+                  orderId: response.razorpay_order_id,
+                },
+              })
+            } else {
+              alert("Payment verification failed!");
+            }
+          } catch (error) {
+            console.error('Error verifying payment:', error.response?.data || error.message);
           }
         },
         prefill: {
-                   name: "Gaurav Kumar",
-                    email: "gaurav.kumar@example.com",
-                     contact: "9000090000"
-                   },
+          name: user.name,
+          email: user.email,
+          contact: user.contact || '9605186881',
+        },
         notes: {
           address: "Car Rental Corporate Office",
         },
@@ -89,30 +104,17 @@ const OrderPage = () => {
       rzp1.open();
 
     } catch (error) {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.error('Error data:', error.response.data);
-        console.error('Error status:', error.response.status);
-        console.error('Error headers:', error.response.headers);
-      } else if (error.request) {
-        // The request was made but no response was received
-        console.error('Error request:', error.request);
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.error('Error message:', error.message);
-      }
-      console.error('Error config:', error.config);
+      console.error('Error creating order:', error.response?.data || error.message);
     }
   };
 
   return (
-    <Box p={5}>
-      <HStack spacing={10} mt={10} align="start">
-        <Image src={car[0].carPicture} alt="Car Image" boxSize="300px" />
-        <VStack spacing={4} align="start" width="full">
-          <Text fontSize="2xl" fontWeight="bold">{car[0].carName}</Text>
-          <SimpleGrid columns={2} spacing={10} width="full">
+    <Box p={[3, 5]} maxWidth="1200px" mx="auto">
+      <HStack spacing={[5, 10]} mt={[5, 10]} align="start" flexDirection={['column', 'row']}>
+        <Image src={car[0].carPicture} alt="Car Image" boxSize={['150px', '300px']} />
+        <VStack spacing={[2, 4]} align="start" width="full">
+          <Text fontSize={['xl', '2xl']} fontWeight="bold">{car[0].carName}</Text>
+          <SimpleGrid columns={[1, 2]} spacing={[5, 10]} width="full">
             <GridItem>
               <Text>Car Model: {car[0].carModel}</Text>
               <Text>Car Company: {car[0].carCompany}</Text>

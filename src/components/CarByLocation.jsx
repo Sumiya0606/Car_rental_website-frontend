@@ -15,7 +15,7 @@ const CarByLocation = () => {
       const getCarsByLocation = async () => {
         
         try {
-          const res = await axios.get(`https://car-rental-website-backend.onrender.com/api/v1/user//getcarbylocation/${officeLocation}`, 
+          const res = await axios.get(`https://car-rental-website-backend.onrender.com/api/v1/user/getcarbylocation/${officeLocation}`, 
             
           );
           setCars(res.data);

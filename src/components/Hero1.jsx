@@ -16,7 +16,7 @@ const Hero1 = () => {
     const getAllCars = async () => {
       try {
         const res = await axios.get(
-          "https://car-rental-website-backend.onrender.com/api/v1/user/getcars",
+          " https://car-rental-website-backend.onrender.com/api/v1/user/getcars",
         );
         const data = await res.data;
         console.log(data);
@@ -33,7 +33,8 @@ const Hero1 = () => {
       <Box maxW="1200px" mx="auto" px="4">
         <Heading as="h1" size="xl" mb="8">Which car do you want????</Heading>
         <Grid templateColumns="repeat(auto-fill, minmax(300px, 1fr))" gap="8">
-          {cars.map((car, index) => (
+          {cars.map((car, 
+          index) => (
             <CarCard key={index} car={car} />
           ))}
         </Grid>

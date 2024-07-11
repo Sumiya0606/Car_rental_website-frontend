@@ -34,6 +34,8 @@ import CarOrderPage1 from './components/CarOrderPage1.jsx';
 import AdditionalRequirementsPage from './components/AdditionalRequirementPage.jsx';
 import OrderPage from './components/OrderPage.jsx';
 import About from './components/About.jsx';
+import PrivateRoute from './components/PrivateRoute.jsx';
+import PaymentSuccess from './components/PaymentSuccess.jsx';
 
 
 const router = createBrowserRouter([
@@ -43,7 +45,7 @@ const router = createBrowserRouter([
      
       {
         path: "/",
-        element: <Hero />,
+        element: <App/>,
       },
       {
         path: "/about",
@@ -77,13 +79,27 @@ const router = createBrowserRouter([
       },
       {
         path: '/user/order/requirements',
-        element: <AdditionalRequirementsPage/>,
+        element: (
+          <PrivateRoute><AdditionalRequirementsPage/></PrivateRoute>
+        
+        )
+      
       },
       {
         path: '/user/orderpage',
-        element: <OrderPage/>,
+        element: (
+          <PrivateRoute><OrderPage/></PrivateRoute>
+        
+        ),
       },
-      
+      {
+        path: "/success",
+        element: (
+          <PrivateRoute>
+            <PaymentSuccess/>
+          </PrivateRoute>
+        ),
+        }
     ],
   },  
   {
@@ -94,89 +110,146 @@ const router = createBrowserRouter([
         children: [
           {
             path: "/admin/dashboard",
-            element:<AdminDashboard />,
+            element: (
+              <PrivateRoute><AdminDashboard /></PrivateRoute>
+            
+            ),
+            
           },
           {
             path: "/admin/users",
-            element:
-                <Users />
-             ,
+            element: (
+              <PrivateRoute><Users /></PrivateRoute>
+            
+            ),
+          
           },
           {
             path: "/admin/admin",
-            element:
-                <Users />
+            element: (
+              <PrivateRoute> <Users /></PrivateRoute>
+            
+            ),
+          
+               
               
           },
           {
             path: '/admin/users/:userId',
-            element:
-                <UserDetails />
+            element: (
+              <PrivateRoute>  <UserDetails /></PrivateRoute>
+            
+            ),
+      
+              
               
           },
           {
             path: '/admin/admin/:userId',
-            element:
-                <UserDetails />
+            element: (
+              <PrivateRoute><UserDetails /></PrivateRoute>
+            
+            ),
+            
+                
               
           },
           {
             path: "/admin/cars",
-            element:
-                <Cars />
+            element: (
+              <PrivateRoute> <Cars /></PrivateRoute>
+            
+            ),
+         
+               
              
           },
           {
             path: "/admin/cars/:carId",
-            element:
-                <CarDetailsAdmin/>
+            element: (
+              <PrivateRoute><CarDetailsAdmin/></PrivateRoute>
+            
+            ),
+         
+                
              
           },
           {
             path: "/admin/addcar",
-            element:
-                <AddCar/>
+            element: (
+              <PrivateRoute> <AddCar/></PrivateRoute>
+            
+            ),
+      
+               
              
           },
           {
             path: "/admin/updatecar/:carId",
-            element:
-                <UpdateCarForm/>
+            element: (
+              <PrivateRoute><UpdateCarForm/></PrivateRoute>
+            
+            ),
+          
+                
              
           },
           {
             path: "/admin/roleChange/:userId",
-            element:
-                <RoleChange/>
+            element: (
+              <PrivateRoute> <RoleChange/></PrivateRoute>
+            
+            ),
+        
+               
              
           },
           {
             path: "orders/:userId",
-            element:
-                <OrderDetails/>
+            element: (
+              <PrivateRoute> <OrderDetails/></PrivateRoute>
+            
+            ),
+          
+               
              
           },
           {
             path: "/admin/offices",
-            element:
-                <Offices/>
+            element: (
+              <PrivateRoute> <Offices/></PrivateRoute>
+            
+            ),
+        
+               
              
           },
           {
             path: "/admin/offices/:officeId",
-            element:
-                <OfficeDtails/>
+            element: (
+              <PrivateRoute><OfficeDtails/></PrivateRoute>
+            
+            ),
+         
+                
                        },
           {
             path: "/admin/addoffice",
-            element:
-                <AddOfice/>
+            element: (
+              <PrivateRoute> <AddOfice/></PrivateRoute>
+            
+            ),
+          
+               
              
           },
           {
             path: "/admin/updateoffice/:officeId",
-            element:
-                <UpdateOffice/>
+            element: (
+              <PrivateRoute><UpdateOffice/></PrivateRoute>
+            
+            ),
+                
              
           },
           

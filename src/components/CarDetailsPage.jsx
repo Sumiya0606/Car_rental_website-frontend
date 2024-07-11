@@ -4,12 +4,16 @@ import { useParams } from 'react-router-dom';
 import { Box, Image, Text, Heading, Flex ,Button} from '@chakra-ui/react';
 import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
+import { useTheme } from '../context/themeContext';
+
 
 
 
 const CarDetails = () => {
+  const { theme } = useTheme();
+  const { token} = useAuth();
   const navigate=useNavigate();
     const [cars, setCars] = useState([]);
 
@@ -17,7 +21,7 @@ const CarDetails = () => {
       const getAllCars = async () => {
         try {
           const res = await axios.get(
-            "https://car-rental-website-backend.onrender.com/api/v1/user/getcars",
+            " https://car-rental-website-backend.onrender.com/api/v1/user/getcars",
           );
           const data = await res.data;
           console.log(data);
@@ -36,11 +40,18 @@ const CarDetails = () => {
     return <Text>Car not found</Text>;
   }
 const handleNext=()=>{
+  console.log(token)
+  if (!token) {
+    alert("Need to login first")
+    navigate('/user/signin');
+    return;
+  }
   // console.log(locationState)
   navigate(`/user/carorder1/${carId}`, { state: { rentalPriceCharge: car.rentalPriceCharge,carPicture:car.carPicture } });
 
 }
   return (
+    <div bg={theme === 'dark' ? 'gray.900' : 'gray.100'} color={theme === 'dark' ? 'white' : 'black'} >
     <Flex direction={{ base: 'column', md: 'row' }} p="4" maxW="1200px" mx="auto">
       <Box flex="1">
         <Image src={car.carPicture} alt={car.name} objectFit="cover" w="100%" h={{ base: '300px', md: '500px' }} />
@@ -60,6 +71,7 @@ const handleNext=()=>{
         </Flex>
       </Box>
     </Flex>
+    </div>
   );
 };
 

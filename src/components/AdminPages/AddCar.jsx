@@ -57,7 +57,7 @@ const AddCar = () => {
 console.log(formData)
     try {
       const res = await axios.post(
-        "https://car-rental-website-backend.onrender.com/api/v1/admin/add-cars",
+        " https://localhost:3000/api/v1/admin/add-cars",
         formData,
         {
           withCredentials: true,

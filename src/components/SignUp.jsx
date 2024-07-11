@@ -42,7 +42,7 @@ const SignUp = () => {
         console.log(message)
         console.log(id)
         if (message === "signed in successfully") {
-          login(firstName,id)
+          login(firstName,id,token)
           navigate('/');
             } else {
                 console.error("Unexpected response:", message);
@@ -93,9 +93,9 @@ const SignUp = () => {
       <input type="submit" className="rounded-md bg-blue-500 py-1 text-white" />
       <p>
         User already exists{" "}
-        {/* <Link to="/user/signin" className="text-blue-500 underline"> */}
+        <Link to="/user/signin" className="text-blue-500 underline">
           Signin
-        {/* </Link> */}
+        </Link>
       </p>
     </form>
                     </div>

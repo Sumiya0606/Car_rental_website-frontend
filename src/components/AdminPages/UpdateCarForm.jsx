@@ -24,7 +24,7 @@ const UpdateCarForm = () => {
     useEffect(() => {
         const fetchCar = async () => {
             try {
-                const res = await axios.get(`https://car-rental-website-backend.onrender.com/api/v1/admin/getcarbyid/${carId}`);
+                const res = await axios.get(`https://localhost:3000/api/v1/admin/getcarbyid/${carId}`);
                 const data = res.data;
                 console.log(data)
                 setCar(data);

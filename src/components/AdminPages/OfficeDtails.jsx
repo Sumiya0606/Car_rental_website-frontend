@@ -43,7 +43,7 @@ const OfficeDtails  = () => {
     try{
         
         const res=await axios.delete(
-            `https://car-rental-website-backend.onrender.com/api/v1/admin//deleteOffice/${officeId}`,
+            ` https://localhost:3000/api/v1/admin//deleteOffice/${officeId}`,
           );
     console.log(res)
     if(res.data=="deleted Office"){

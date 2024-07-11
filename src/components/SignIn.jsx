@@ -25,7 +25,7 @@ const navigate = useNavigate();
 const onSubmit = async (data) => {
     try {
         const res = await axios.post(
-            "https://car-rental-website-backend.onrender.com/api/v1/user/signin",
+            " https://car-rental-website-backend.onrender.com/api/v1/user/signin",
             data,
             {
                 withCredentials: true,
@@ -41,7 +41,7 @@ const onSubmit = async (data) => {
           if(role=='admin'){
             navigate('/admin/dashboard')
           }else{
-          login(firstName,id)
+          login(firstName,id,token)
           navigate('/');
           }
         

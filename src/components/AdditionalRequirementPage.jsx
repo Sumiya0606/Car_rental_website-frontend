@@ -75,7 +75,7 @@ const AdditionalRequirementsPage = () => {
                             <Text fontSize="lg">Need Baby Seat</Text>
                             <Flex align="center">
                                 <Link href="#" onClick={() => handleRowClick(1)} color="blue.500" fontSize="md" mr="2">
-                                    {clickedRowId === 1 ? 'Close' : 'Details'}
+                                    {/* {clickedRowId === 1 ? 'Close' : 'Details'} */}
                                 </Link>
                                 <Switch isChecked={facilities.babySeat} onChange={() => handleToggleChange('babySeat')} />
                             </Flex>
@@ -93,7 +93,7 @@ const AdditionalRequirementsPage = () => {
                             <Text fontSize="lg">Need GPS</Text>
                             <Flex align="center">
                                 <Link href="#" onClick={() => handleRowClick(2)} color="blue.500" fontSize="md" mr="2">
-                                    {clickedRowId === 2 ? 'Close' : 'Details'}
+                                    {/* {clickedRowId === 2 ? 'Close' : 'Details'} */}
                                 </Link>
                                 <Switch isChecked={facilities.gps} onChange={() => handleToggleChange('gps')} />
                             </Flex>
@@ -101,7 +101,7 @@ const AdditionalRequirementsPage = () => {
                         <Text mt="2" fontSize="md" color="gray.600">Amount: $500/day</Text>
                         {clickedRowId === 2 && (
                             <div align="center">
-                                {rows.find(row => row.id === 2).details}
+                                {/* {rows.find(row => row.id === 2).details} */}
                             </div>
                         )}
                     </Box>
@@ -111,7 +111,7 @@ const AdditionalRequirementsPage = () => {
                             <Text fontSize="lg">Need Additional Driver</Text>
                             <Flex align="center">
                                 <Link href="#" onClick={() => handleRowClick(3)} color="blue.500" fontSize="md" mr="2">
-                                    {clickedRowId === 3 ? 'Close' : 'Details'}
+                                    {/* {clickedRowId === 3 ? 'Close' : 'Details'} */}
                                 </Link>
                                 <Switch isChecked={facilities.additionalDriver} onChange={() => handleToggleChange('additionalDriver')} />
                             </Flex>

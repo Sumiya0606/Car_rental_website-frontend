@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import { BiSolidSun, BiSolidMoon } from "react-icons/bi";
 import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
 import ResponsiveMenu from "./ResponsiveMenu";
-
+import { ThemeContext } from '../context/themeContext'
 export const Navlinks = [
   {
     id: 1,
@@ -25,16 +25,21 @@ export const Navlinks = [
     link: "/#booking",
   },
 ];
-const Navbar = ({ theme, setTheme }) => {
+const Navbar = () => {
+  const { theme, setTheme } = useContext(ThemeContext);
   const [showMenu, setShowMenu] = useState(false);
-
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
   return (
     <div
-      className="relative z-10 shadow-md w-full dark:bg-black dark:text-white duration-300
-    "
+      className={`relative z-10 shadow-md w-full duration-300 ${
+        theme === "dark" ? "bg-black  text-white" : "bg-white text-black"
+      }`}
+    
     >
       <div className="container py-2 md:py-0">
         <div className="flex justify-between items-center">
@@ -67,6 +72,7 @@ const Navbar = ({ theme, setTheme }) => {
               )}
             </ul>
           </nav>
+         { console.log(theme)}
           {/* Mobile view  */}
           <div className="flex items-center gap-4 md:hidden ">
             {/* dark  mode */}
@@ -98,7 +104,7 @@ const Navbar = ({ theme, setTheme }) => {
           </div>
         </div>
       </div>
-      /* <ResponsiveMenu showMenu={showMenu} /> 
+      <ResponsiveMenu showMenu={showMenu} /> 
     </div>
   );
 };
