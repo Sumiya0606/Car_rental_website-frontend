@@ -5,9 +5,10 @@ import UserCard from './UserCard';
 import axios from 'axios'
 import { Link, useNavigate ,useLocation } from "react-router-dom";
 
-
+import { useAuth } from '../../context/AuthContext';
 
 const Users = () => {
+  const { user, token } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const [users,setUsers]=useState([]);
