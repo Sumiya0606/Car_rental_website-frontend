@@ -39,6 +39,7 @@ const onSubmit = async (data) => {
         console.log(role)
         if (message === "Logged in successfully") {
           if(role=='admin'){
+            login(firstName,id,token)
             navigate('/admin/dashboard')
           }else{
           login(firstName,id,token)
