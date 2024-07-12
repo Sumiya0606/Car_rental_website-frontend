@@ -16,7 +16,7 @@ const Hero1 = () => {
     const getAllCars = async () => {
       try {
         const res = await axios.get(
-          " https://car-rental-website-backend.onrender.com/api/v1/user/getcars",
+          "https://car-rental-website-backend.onrender.com/api/v1/user/getcars",
         );
         const data = await res.data;
         console.log(data);

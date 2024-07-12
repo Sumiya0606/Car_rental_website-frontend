@@ -69,7 +69,7 @@ const handleRoleChange=()=>{
         <Box flex="1" p="3">
           <Heading as="h3" size="md" mb="3">{user.firstName}</Heading>
           <Text fontSize="md" mb="3">Email: {user.email}</Text>
-          <Text fontSize="md" mb="3">Phone: {user.contactNumber}</Text>
+          {/* <Text fontSize="md" mb="3">Phone: {user.contactNumber}</Text> */}
           <Text fontSize="md">{user.details}</Text>
           <VStack spacing="2" mt="3">
           {user.role !== 'admin' && (
