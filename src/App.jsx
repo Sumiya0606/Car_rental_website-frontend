@@ -4,6 +4,11 @@ import "aos/dist/aos.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import { useTheme } from './context/themeContext'
+import About from "./components/About";
+import Contact from "./components/Contact";
+import AppStoreBanner from "./components/AppStoreBanner";
+import Footer from "./components/Footer";
+import Services from "./components/Services";
 // Component import
 
 
@@ -38,7 +43,11 @@ const App = () => {
     <div className="bg-white dark:bg-black dark:text-white text-black overflow-x-hidden">
       {/* <Navbar theme={theme} setTheme={setTheme} /> */}
       <Hero theme={theme} />
-      {/* <About />
+      <Services/>
+      <About/>
+      <Contact />
+    <Footer/>
+      {/* 
       <Services />
       <CarList />
       <Testimonial />
